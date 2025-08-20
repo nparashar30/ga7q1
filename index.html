@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quarterly Earnings — RevealJS Deck</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Reveal.js core CSS + theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css" id="theme">
+
+    <!-- Code highlighting theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css" id="highlight-theme">
+
+    <style>
+      .byline { font-size: 0.9rem; opacity: 0.85; margin-top: 0.5rem; }
+      kbd { padding: 0.15rem 0.35rem; border: 1px solid #888; border-bottom-width: 3px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+      .subtitle { font-size: 1.1rem; opacity: 0.9; }
+      .footnote { font-size: 0.7em; opacity: 0.8; }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Title -->
+        <section>
+          <h1>Q2 FY2025 Earnings</h1>
+          <p class="subtitle">Interactive stakeholder briefing (RevealJS)</p>
+          <p class="byline">Prepared by: Technical Consultant</p>
+          <p class="byline">Contact: <a href="mailto:24f2005249@ds.study.iitm.ac.in">24f2005249@ds.study.iitm.ac.in</a></p>
+          <aside class="notes">
+            Welcome! This deck showcases modern presentation features for a quarterly earnings readout:
+            markdown, animated fragments, syntax-highlighted code, math, and speaker notes. Use this as a starting template.
+            Tip: Press <kbd>S</kbd> to open speaker view with these notes.
+          </aside>
+        </section>
+
+        <!-- Markdown slide -->
+        <section data-markdown>
+          <textarea data-template>
+## Executive Highlights _(Markdown)_
+- **Revenue:** ₹128.4B (**+12% YoY**)
+- **Net Interest Income:** ₹41.2B
+- **Operating Margin:** 34.7%
+- **EPS (diluted):** ₹18.30
+- **Guidance:** FY25 raised by 50–80 bps
+
+_These figures are placeholders — replace with actual numbers before publishing._
+          </textarea>
+        </section>
+
+        <!-- Animated fragments -->
+        <section>
+          <h2>Segment KPIs (Animated)</h2>
+          <ul>
+            <li class="fragment fade-in-then-semi-out">Retail Banking: Loan growth <strong>+9%</strong></li>
+            <li class="fragment fade-up">Corporate Banking: Fee income <strong>+7%</strong></li>
+            <li class="fragment highlight-current-red">Wealth: AUM <strong>₹2.1T</strong></li>
+            <li class="fragment fade-in">Digital payments volume <strong>+22%</strong></li>
+          </ul>
+          <aside class="notes">
+            Reveal fragments let you stage content. Advance one bullet at a time to keep focus.
+            Consider using transitions (fade-up, grow, highlight-current) sparingly for clarity.
+          </aside>
+        </section>
+
+        <!-- Code sample with syntax highlighting -->
+        <section>
+          <h2>Code Sample (Python): Quick NPV & IRR</h2>
+<pre><code class="language-python">
+from typing import Iterable
+
+def npv(rate: float, cashflows: Iterable[float]) -> float:
+    return sum(cf / (1 + rate)**t for t, cf in enumerate(cashflows))
+
+def irr(cashflows: Iterable[float], guess: float = 0.1, tol: float = 1e-6, max_iter: int = 100) -> float:
+    r = guess
+    for _ in range(max_iter):
+        f = npv(r, cashflows)
+        # Numerical derivative (finite difference)
+        df = (npv(r + 1e-6, cashflows) - f) / 1e-6
+        if abs(df) &lt; 1e-12:
+            break
+        r_next = r - f / df
+        if abs(r_next - r) &lt; tol:
+            return r_next
+        r = r_next
+    return r
+
+# Example
+cashflows = [-1000, 300, 420, 680]
+print("NPV @ 8%:", round(npv(0.08, cashflows), 2))
+print("IRR:", round(irr(cashflows), 4))
+</code></pre>
+          <aside class="notes">
+            Use this block to demonstrate analysis reproducibility.
+            Because Highlight.js is enabled, language hints like 'language-python' trigger syntax coloring.
+          </aside>
+        </section>
+
+        <!-- Financial mathematics -->
+        <section>
+          <h2>Financial Mathematics</h2>
+          <p>Time value of money (compound): \\( \\mathrm{FV} = \\mathrm{PV} \\times (1 + r)^n \\)</p>
+          <p class="footnote">Where: \(r\) is the rate per period, \(n\) the number of periods.</p>
+          <p>Net present value (NPV):</p>
+          <p>\\[ \\mathrm{NPV} = \\sum_{t=0}^{T} \\frac{C_t}{(1 + r)^t} \\]</p>
+          <p>Black–Scholes (Call):</p>
+          <p>\\[ C = S_0 \\, \\Phi(d_1) - K e^{-r T} \\Phi(d_2) \\]</p>
+          <aside class="notes">
+            This slide uses MathJax via Reveal's math plugin. Inline math uses \\( ... \\), display uses \\[ ... \\].
+            Replace with formulas relevant to your institution's reporting (e.g., VaR, duration/convexity).
+          </aside>
+        </section>
+
+        <!-- Presenter help -->
+        <section>
+          <h2>Presenter Shortcuts</h2>
+          <ul>
+            <li><kbd>→</kbd>/<kbd>←</kbd>: Navigate slides</li>
+            <li><kbd>S</kbd>: Speaker notes view</li>
+            <li><kbd>F</kbd>: Fullscreen</li>
+            <li><kbd>O</kbd>: Slide overview</li>
+            <li><kbd>Esc</kbd>: Exit overlay</li>
+          </ul>
+          <aside class="notes">
+            Use the notes view on a second screen for smooth delivery. Consider a clicker for fragments.
+          </aside>
+        </section>
+
+        <!-- Closing -->
+        <section>
+          <h2>Q&amp;A</h2>
+          <p>Contact: <a href="mailto:24f2005249@ds.study.iitm.ac.in">24f2005249@ds.study.iitm.ac.in</a></p>
+          <aside class="notes">
+            Invite questions on business performance, risk metrics, and technology enablement.
+          </aside>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scripts: Reveal core + plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
+
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        transition: 'slide',
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ],
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          tex: { inlineMath: [['\\\\(', '\\\\)'], ['$', '$']] }
+        }
+      });
+    </script>
+  </body>
+</html>
